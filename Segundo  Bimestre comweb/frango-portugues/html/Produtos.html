@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio — Frango Português</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/produtos.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="../index.html">
+      <img src="../img/frango-logo.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="menu" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto gap-2 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./Produtos.html">Cardápio</a></li>
+        <li class="nav-item"><a class="nav-link" href="./login.html">Login</a></li>
+        <li class="nav-item">
+          <button id="toggleTema" class="btn-tema" title="Alternar modo claro/escuro">🌙</button>
+        </li>
+        <li class="nav-item">
+          <span class="carrinho-badge" title="Itens no pedido">
+            🛒 <span id="contadorCarrinho">0</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <h1 class="page-title">Nosso Cardápio</h1>
+  <p class="section-subtitle">Sabor de verdade, direto pra você 🍗</p>
+
+  <div class="video-wrapper ratio ratio-16x9">
+    <video controls>
+      <source src="../video/Video do Frango.mp4" type="video/mp4">
+      <track kind="subtitles" src="../video/legenda.vtt" srclang="pt" label="Português">
+    </video>
+  </div>
+
+  <!-- Filtro de produtos (JS) -->
+  <div class="filtro-wrapper mb-4">
+    <input type="text" id="filtroProduto" class="form-control" placeholder="🔎 Buscar produto pelo nome...">
+    <div class="filtro-categorias mt-3">
+      <button class="btn-categoria ativo" data-categoria="todos">Todos</button>
+      <button class="btn-categoria" data-categoria="principal">Pratos</button>
+      <button class="btn-categoria" data-categoria="acompanhamento">Acompanhamentos</button>
+    </div>
+  </div>
+
+  <div id="listaProdutos" class="row g-4 mb-5">
+    <div class="col-12 col-sm-6 col-lg-4 produto-item" data-nome="Arroz de Carreteiro" data-categoria="acompanhamento" data-preco="22">
+      <div class="product-card reveal">
+        <button class="btn-fav" data-id="arroz">🤍</button>
+        <img src="../img/arroz.jpg" alt="Arroz de Carreteiro">
+        <h5>Arroz de Carreteiro</h5>
+        <div class="price">R$ 22,00</div>
+        <div class="weight">400g</div>
+        <button class="btn-pedir" data-nome="Arroz de Carreteiro" data-preco="22">Adicionar ao pedido</button>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 produto-item" data-nome="Feijão Tropeiro" data-categoria="acompanhamento" data-preco="16">
+      <div class="product-card reveal">
+        <button class="btn-fav" data-id="feijao">🤍</button>
+        <img src="../img/feijao tropeiro.webp" alt="Feijão Tropeiro">
+        <h5>Feijão Tropeiro</h5>
+        <div class="price">R$ 16,00</div>
+        <div class="weight">350g</div>
+        <button class="btn-pedir" data-nome="Feijão Tropeiro" data-preco="16">Adicionar ao pedido</button>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 produto-item" data-nome="Frango Assado" data-categoria="principal" data-preco="55">
+      <div class="product-card reveal">
+        <button class="btn-fav" data-id="frango">🤍</button>
+        <img src="../img/frango produto.jpg" alt="Frango">
+        <h5>Frango Assado</h5>
+        <div class="price">R$ 55,00</div>
+        <div class="weight">1,3 kg</div>
+        <button class="btn-pedir" data-nome="Frango Assado" data-preco="55">Adicionar ao pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <p id="semResultados" class="text-center sem-resultados" style="display:none;">
+    Nenhum produto encontrado 😕
+  </p>
+
+  <!-- Resumo do pedido (simulação) -->
+  <div class="pedido-wrapper">
+    <h3>Seu Pedido</h3>
+    <ul id="listaPedido" class="lista-pedido"></ul>
+    <p class="pedido-total">Total: <strong>R$ <span id="totalPedido">0,00</span></strong></p>
+    <button id="finalizarPedido" class="btn-finalizar">Finalizar pedido</button>
+    <button id="limparPedido" class="btn-limpar">Limpar</button>
+    <p id="msgPedido" class="msg-pedido"></p>
+  </div>
+
+  <div class="tabela-wrapper">
+    <h3>Tabela de Preços</h3>
+    <div class="table-responsive">
+      <table class="table table-striped text-center align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody class="text-dark">
+          <tr><td>🍗 Frango Assado</td><td><strong>R$ 52,00</strong></td><td>1,3 kg</td></tr>
+          <tr><td>🍚 Arroz de Carreteiro</td><td><strong>R$ 22,00</strong></td><td>400 g</td></tr>
+          <tr><td>🫘 Feijão Tropeiro</td><td><strong>R$ 16,00</strong></td><td>350 g</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 <span>Frango Português</span> — Vila Velha, ES</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/produtos.js"></script>
+</body>
+</html>
