@@ -1,0 +1,128 @@
+body {
+  background-color: #8e1b1e;
+  font-family: 'Nunito', sans-serif;
+  transition: background-color 0.4s, color 0.4s;
+}
+.navbar {
+  background-color: #8d1e05 !important;
+}
+.navbar-brand img {
+  height: 40px;
+  margin-right: 8px;
+}
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+  font-size: 1.4rem;
+  color: #f5c518 !important;
+}
+.nav-link {
+  color: white !important;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.nav-link:hover {
+  color: #f5c518 !important;
+}
+.Frango {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+.Frango h1 {
+  font-family: 'Lobster', cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: #f5c518;
+  text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+}
+.Frango p {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: #ffdddd;
+}
+.frango-logo {
+  width: clamp(100px, 25vw, 200px);
+  margin-bottom: 20px;
+  animation: pulse 2.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.btn-cardapio {
+  background-color: #f5c518;
+  color: #1a0000;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 12px 32px;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+.btn-cardapio:hover {
+  background-color: #ff6600;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+footer {
+  background-color:#8e1b1e;
+  color: #aaa;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+footer span { color: #f5c518; }
+
+/* ===== Botão tema ===== */
+.btn-tema {
+  background: transparent;
+  border: 2px solid #f5c518;
+  color: #f5c518;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-tema:hover { background: #f5c518; color: #1a0000; }
+
+/* ===== Mensagem dinâmica + contador ===== */
+.mensagem-dinamica {
+  color: #fff3cd;
+  font-style: italic;
+  font-size: 1.05rem;
+  min-height: 1.5em;
+  margin-bottom: 18px;
+}
+.contador-box {
+  display: inline-block;
+  background: rgba(0,0,0,0.35);
+  padding: 14px 28px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+  border: 2px solid #f5c518;
+}
+.contador-box #contadorClientes {
+  font-family: 'Lobster', cursive;
+  font-size: 2.4rem;
+  color: #f5c518;
+  display: block;
+  line-height: 1;
+}
+.contador-box small { color: #ffdddd; font-size: 0.85rem; }
+
+/* ===== Dark mode ===== */
+body.dark-mode {
+  background-color: #120000;
+  color: #f5e6c8;
+}
+body.dark-mode .navbar { background-color: #2a0000 !important; }
+body.dark-mode footer { background-color: #2a0000; }
+body.dark-mode .Frango p { color: #f5e6c8; }
+body.dark-mode .contador-box { background: rgba(255,255,255,0.05); }
